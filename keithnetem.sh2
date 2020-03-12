@@ -1,0 +1,83 @@
+#!/bin/sh
+
+# Script to drive NetEm for Keith's lever set tests
+
+# Set Duration to required number of SECONDS (default 1200 is 20 minutes)
+
+DURATION=7200
+
+# Set Interface to require network interface
+
+INTERFACE=enp1s0f1
+
+# Start with 50ms increments to delay
+
+# Next 2% increments in loss
+
+# Run through delays with 2% loss
+
+sudo tc qdisc add dev $INTERFACE root netem loss 2%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 80ms loss 2%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 180ms loss 2%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 280ms loss 2%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem loss 5%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 80ms loss 5%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 180ms loss 5%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 280ms loss 5%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+# Run through delays with 4% loss
+
+sudo tc qdisc add dev $INTERFACE root netem loss 10%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 80ms loss 10%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 180ms loss 10%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+sudo tc qdisc add dev $INTERFACE root netem delay 280ms loss 10%
+sudo tc qdisc show dev $INTERFACE
+sleep $DURATION
+sudo tc qdisc del dev $INTERFACE root
+
+
+
+
