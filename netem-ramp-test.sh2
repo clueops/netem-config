@@ -12,16 +12,16 @@ INTERFACE=enp1s0f1
 # Loops by Delay > Jitter > Loss
 
 # First delay run - delay 0ms
-DELAY=0ms
+DELAY=0.1ms
     # 1st loss run - loss 0%
-    $LOSS=0
+    LOSS=0
         # Jitter run - jitter 0ms
         # not implemented as this should be the standard state.
         # sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms
         echo $(date -u)
         sudo tc qdisc show dev $INTERFACE
         # sleep $DURATION
-        # sudo tc qdisc del dev $INTERFACE root
+        sudo tc qdisc del dev $INTERFACE root
 
         # Jitter run - jitter 20ms
         sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal
@@ -45,7 +45,7 @@ DELAY=0ms
         sudo tc qdisc del dev $INTERFACE root
 
     # 2nd loss run - loss 2%
-    $LOSS=2
+    LOSS=2
         # Jitter run - jitter 0ms
         sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
         echo $(date -u)
@@ -75,7 +75,7 @@ DELAY=0ms
         sudo tc qdisc del dev $INTERFACE root
 
     # 3rd loss run - loss 5%
-    $LOSS=5
+    LOSS=5
         # Jitter run - jitter 0ms
         sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
         echo $(date -u)
@@ -105,7 +105,7 @@ DELAY=0ms
         sudo tc qdisc del dev $INTERFACE root
 
     # 4th loss run - loss 10%
-    $LOSS=10
+    LOSS=10
         # Jitter run - jitter 0ms
         sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
         echo $(date -u)
@@ -135,7 +135,7 @@ DELAY=0ms
         sudo tc qdisc del dev $INTERFACE root
 
     # 5th loss run - loss 15%
-    $LOSS=15
+    LOSS=15
         # Jitter run - jitter 0ms
         sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
         echo $(date -u)
