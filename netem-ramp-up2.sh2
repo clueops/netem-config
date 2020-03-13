@@ -3,8 +3,8 @@
 # Script to drive NetEm to provide changing network conditions
 
 # usage:
-# ./netem-ramp-up2.sh2				: output to screen only
-# ./netem-ramp-up2.sh2 | tee <logfile.log>	: output to screen and file <logfile.log>
+# ./netem-ramp-up2.sh2			        	: output to screen only
+# ./netem-ramp-up2.sh2 | tee <logfile.log>	: output to screen and log file <logfile.log>
 
 # Set Duration to required number of SECONDS (e.g. 1200 is 20 minutes)
 DURATION=0.5
@@ -38,12 +38,13 @@ do
             echo -n "        * $(date -u)"
 
             if [ $JITTER = 0ms ]
-		then
-			sudo tc qdisc add dev $INTERFACE root netem delay $DELAY loss $LOSS
+		    then
+			    sudo tc qdisc add dev $INTERFACE root netem delay $DELAY loss $LOSS
 
-		else
-			sudo tc qdisc add dev $INTERFACE root netem delay $DELAY $JITTER 25% distribution normal loss $LOSS
-		fi
+		    else
+			    sudo tc qdisc add dev $INTERFACE root netem delay $DELAY $JITTER 25% distribution normal loss $LOSS
+		    fi
+            
             sudo tc qdisc show dev $INTERFACE | awk '{print "   ->   "$0}'
             sleep $DURATION
             sudo tc qdisc del dev $INTERFACE root
@@ -54,6 +55,7 @@ do
 done
 
 # Finish
+echo ""
 echo $(date -u)
 echo "Finished NetEm run!"
 
