@@ -9,9 +9,11 @@ Script to drive NetEm to provide changing network conditions. This script is con
 ### Usage
 
 Output to screen only:
+
     ./netem-ramp-up2.sh2
 
 Output to screen and log file:
+
     ./netem-ramp-up2.sh2 | tee <logfile.log>
 
 ### Network Conditions
