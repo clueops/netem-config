@@ -9,10 +9,10 @@ Script to drive NetEm to provide changing network conditions. This script is con
 ### Usage
 
 Output to screen only:
-'./netem-ramp-up2.sh2'
+    ./netem-ramp-up2.sh2
 
 Output to screen and log file:
-'./netem-ramp-up2.sh2 | tee <logfile.log>'
+    ./netem-ramp-up2.sh2 | tee <logfile.log>
 
 ### Network Conditions
 
@@ -20,4 +20,4 @@ The base script includes the below network conditions. These can be varied as re
 
     DELAY : 1ms 30ms 80ms 130ms 180ms 230ms
     JITTER : 0ms 20ms 50ms 100ms
-    LOSS : 0% 2% 5% 10% 15%'
+    LOSS : 0% 2% 5% 10% 15%
