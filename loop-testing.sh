@@ -7,4 +7,7 @@ do
     echo "- Delay is $DELAY"
 done
 
-echo $($DELAYS | shuf | DELAY_SHUF)
+echo $($DELAYS | shuf | $DELAY_SHUF)
+$DELAYS_SHUF = "$(shuf -e ${DELAYS})"
+echo "${OUTPUT}"
+
