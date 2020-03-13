@@ -1,13 +1,15 @@
-
 DELAYS="1ms 30ms 80ms 130ms 180ms 230ms"
 
+echo "Normal"
 for DELAY in $DELAYS
 do
-    echo ""
     echo "- Delay is $DELAY"
 done
 
-echo $($DELAYS | shuf | $DELAY_SHUF)
-$DELAYS_SHUF = "$(shuf -e ${DELAYS})"
-echo "${OUTPUT}"
+DELAYS_SHUF=$(shuf -e $DELAYS)
 
+echo "Random"
+for DELAY in $DELAYS_SHUF
+do
+    echo "- Delay is $DELAY"
+done
