@@ -1,0 +1,788 @@
+#!/bin/bash
+
+# Script to drive NetEm for Lever Set Tests
+
+# Set Duration to required number of SECONDS (default 1200 is 20 minutes)
+DURATION=300
+
+# Set Interface to required network interface
+# Options: Inside [enp1s0f1], Outside: [enp1s0f0]
+INTERFACE=enp1s0f1
+
+
+# Start
+echo "Starting..."
+echo $(date -u)
+sudo tc qdisc del dev $INTERFACE root
+
+# Loops by Delay > Jitter > Loss
+
+# 1st delay run - delay 1ms
+DELAY=1ms
+    # 1st loss run - loss 0%
+    LOSS=0
+        # Jitter run - jitter 0ms
+        # not enabled as this should be the standard state.
+        # sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        # sleep $DURATION
+        # sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 2nd loss run - loss 2%
+    LOSS=2
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 3rd loss run - loss 5%
+    LOSS=5
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 4th loss run - loss 10%
+    LOSS=10
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 5th loss run - loss 15%
+    LOSS=15
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+# 2nd delay run - delay 30ms
+DELAY=30ms
+    # 1st loss run - loss 0%
+    LOSS=0
+        # Jitter run - jitter 0ms
+        # not implemented as this should be the standard state.
+        # sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        # sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 2nd loss run - loss 2%
+    LOSS=2
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 3rd loss run - loss 5%
+    LOSS=5
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 4th loss run - loss 10%
+    LOSS=10
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 5th loss run - loss 15%
+    LOSS=15
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+# 3rd delay run - delay 80ms
+DELAY=80ms
+    # 1st loss run - loss 0%
+    LOSS=0
+        # Jitter run - jitter 0ms
+        # not implemented as this should be the standard state.
+        # sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        # sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 2nd loss run - loss 2%
+    LOSS=2
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 3rd loss run - loss 5%
+    LOSS=5
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 4th loss run - loss 10%
+    LOSS=10
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 5th loss run - loss 15%
+    LOSS=15
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+# 4th delay run - delay 130ms
+DELAY=130ms
+    # 1st loss run - loss 0%
+    LOSS=0
+        # Jitter run - jitter 0ms
+        # not implemented as this should be the standard state.
+        # sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        # sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 2nd loss run - loss 2%
+    LOSS=2
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 3rd loss run - loss 5%
+    LOSS=5
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 4th loss run - loss 10%
+    LOSS=10
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 5th loss run - loss 15%
+    LOSS=15
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+# 5th delay run - delay 180ms
+DELAY=180ms
+    # 1st loss run - loss 0%
+    LOSS=0
+        # Jitter run - jitter 0ms
+        # not implemented as this should be the standard state.
+        # sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        # sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 2nd loss run - loss 2%
+    LOSS=2
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 3rd loss run - loss 5%
+    LOSS=5
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 4th loss run - loss 10%
+    LOSS=10
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+    # 5th loss run - loss 15%
+    LOSS=15
+        # Jitter run - jitter 0ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 0ms loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 20ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 20ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 50ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 50ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+        # Jitter run - jitter 100ms
+        sudo tc qdisc add dev $INTERFACE root netem delay $DELAY 100ms 25% distribution normal loss $LOSS
+        echo $(date -u)
+        sudo tc qdisc show dev $INTERFACE
+        sleep $DURATION
+        sudo tc qdisc del dev $INTERFACE root
+
+# Finish
+echo "Finished"
+echo $(date -u)
+sudo tc qdisc show dev $INTERFACE
