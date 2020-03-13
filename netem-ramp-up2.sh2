@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Script to drive NetEm to provide changing network conditions
+
+# Set Duration to required number of SECONDS (e.g. 1200 is 20 minutes)
+DURATION=5
+
+# Set Interface to required network interface
+# Options: Inside [enp1s0f1], Outside: [enp1s0f0]
+INTERFACE=enp1s0f1
+
+
+# Start
+echo "Starting..."
+echo $(date -u)
+sudo tc qdisc del dev $INTERFACE root
+
+# Loops by Delay > Jitter > Loss
+
+# Delay loop
+for DELAY in 1ms 30ms 80ms 130ms 180ms
+do
+    echo "- Delay is $DELAY"
+    # Jitter loop
+    for JITTER in 0ms 20ms 50ms 100ms
+    do
+        echo "-- Jitter is $JITTER"
+        # Loss loop
+        for LOSS in 0 2 5 10 15
+        do
+            echo "--- Loss is $LOSS"
+            echo "--- $(date -u)"
+        done
+    done
+done
+
+# Finish
+echo "Finished"
+echo $(date -u)
+sudo tc qdisc show dev $INTERFACE root
