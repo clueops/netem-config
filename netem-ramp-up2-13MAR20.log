@@ -1,0 +1,160 @@
+Starting NetEm run...
+Fri 13 Mar 14:05:04 UTC 2020
+
+- Delay is 1ms
+  - Jitter is 0ms
+    - Loss is 0%
+        * Fri 13 Mar 14:05:04 UTC 2020   ->   qdisc netem 836a: root refcnt 9 limit 1000 delay 1.0ms
+    - Loss is 2%
+        * Fri 13 Mar 15:05:04 UTC 2020   ->   qdisc netem 836b: root refcnt 9 limit 1000 delay 1.0ms loss 2%
+    - Loss is 5%
+        * Fri 13 Mar 16:05:04 UTC 2020   ->   qdisc netem 836c: root refcnt 9 limit 1000 delay 1.0ms loss 5%
+    - Loss is 10%
+        * Fri 13 Mar 17:05:04 UTC 2020   ->   qdisc netem 836d: root refcnt 9 limit 1000 delay 1.0ms loss 10%
+    - Loss is 15%
+        * Fri 13 Mar 18:05:04 UTC 2020   ->   qdisc netem 836e: root refcnt 9 limit 1000 delay 1.0ms loss 15%
+  - Jitter is 20ms
+    - Loss is 0%
+        * Fri 13 Mar 19:05:04 UTC 2020   ->   qdisc netem 836f: root refcnt 9 limit 1000 delay 1.0ms  20.0ms 25%
+    - Loss is 2%
+        * Fri 13 Mar 20:05:04 UTC 2020   ->   qdisc netem 8370: root refcnt 9 limit 1000 delay 1.0ms  20.0ms 25% loss 2%
+    - Loss is 5%
+        * Fri 13 Mar 21:05:04 UTC 2020   ->   qdisc netem 8371: root refcnt 9 limit 1000 delay 1.0ms  20.0ms 25% loss 5%
+    - Loss is 10%
+        * Fri 13 Mar 22:05:04 UTC 2020   ->   qdisc netem 8372: root refcnt 9 limit 1000 delay 1.0ms  20.0ms 25% loss 10%
+    - Loss is 15%
+        * Fri 13 Mar 23:05:04 UTC 2020   ->   qdisc netem 8373: root refcnt 9 limit 1000 delay 1.0ms  20.0ms 25% loss 15%
+  - Jitter is 50ms
+    - Loss is 0%
+        * Sat 14 Mar 00:05:04 UTC 2020   ->   qdisc netem 8374: root refcnt 9 limit 1000 delay 1.0ms  50.0ms 25%
+    - Loss is 2%
+        * Sat 14 Mar 01:05:04 UTC 2020   ->   qdisc netem 8375: root refcnt 9 limit 1000 delay 1.0ms  50.0ms 25% loss 2%
+    - Loss is 5%
+        * Sat 14 Mar 02:05:04 UTC 2020   ->   qdisc netem 8376: root refcnt 9 limit 1000 delay 1.0ms  50.0ms 25% loss 5%
+    - Loss is 10%
+        * Sat 14 Mar 03:05:04 UTC 2020   ->   qdisc netem 8377: root refcnt 9 limit 1000 delay 1.0ms  50.0ms 25% loss 10%
+    - Loss is 15%
+        * Sat 14 Mar 04:05:04 UTC 2020   ->   qdisc netem 8378: root refcnt 9 limit 1000 delay 1.0ms  50.0ms 25% loss 15%
+  - Jitter is 100ms
+    - Loss is 0%
+        * Sat 14 Mar 05:05:04 UTC 2020   ->   qdisc netem 8379: root refcnt 9 limit 1000 delay 1.0ms  100.0ms 25%
+    - Loss is 2%
+        * Sat 14 Mar 06:05:04 UTC 2020   ->   qdisc netem 837a: root refcnt 9 limit 1000 delay 1.0ms  100.0ms 25% loss 2%
+    - Loss is 5%
+        * Sat 14 Mar 07:05:04 UTC 2020   ->   qdisc netem 837b: root refcnt 9 limit 1000 delay 1.0ms  100.0ms 25% loss 5%
+    - Loss is 10%
+        * Sat 14 Mar 08:05:04 UTC 2020   ->   qdisc netem 837c: root refcnt 9 limit 1000 delay 1.0ms  100.0ms 25% loss 10%
+    - Loss is 15%
+        * Sat 14 Mar 09:05:04 UTC 2020   ->   qdisc netem 837d: root refcnt 9 limit 1000 delay 1.0ms  100.0ms 25% loss 15%
+
+- Delay is 30ms
+  - Jitter is 0ms
+    - Loss is 0%
+        * Sat 14 Mar 10:05:04 UTC 2020   ->   qdisc netem 837e: root refcnt 9 limit 1000 delay 30.0ms
+    - Loss is 2%
+        * Sat 14 Mar 11:05:05 UTC 2020   ->   qdisc netem 837f: root refcnt 9 limit 1000 delay 30.0ms loss 2%
+    - Loss is 5%
+        * Sat 14 Mar 12:05:05 UTC 2020   ->   qdisc netem 8380: root refcnt 9 limit 1000 delay 30.0ms loss 5%
+    - Loss is 10%
+        * Sat 14 Mar 13:05:05 UTC 2020   ->   qdisc netem 8381: root refcnt 9 limit 1000 delay 30.0ms loss 10%
+    - Loss is 15%
+        * Sat 14 Mar 14:05:05 UTC 2020   ->   qdisc netem 8382: root refcnt 9 limit 1000 delay 30.0ms loss 15%
+  - Jitter is 20ms
+    - Loss is 0%
+        * Sat 14 Mar 15:05:05 UTC 2020   ->   qdisc netem 8383: root refcnt 9 limit 1000 delay 30.0ms  20.0ms 25%
+    - Loss is 2%
+        * Sat 14 Mar 16:05:05 UTC 2020   ->   qdisc netem 8384: root refcnt 9 limit 1000 delay 30.0ms  20.0ms 25% loss 2%
+    - Loss is 5%
+        * Sat 14 Mar 17:05:05 UTC 2020   ->   qdisc netem 8385: root refcnt 9 limit 1000 delay 30.0ms  20.0ms 25% loss 5%
+    - Loss is 10%
+        * Sat 14 Mar 18:05:05 UTC 2020   ->   qdisc netem 8386: root refcnt 9 limit 1000 delay 30.0ms  20.0ms 25% loss 10%
+    - Loss is 15%
+        * Sat 14 Mar 19:05:05 UTC 2020   ->   qdisc netem 8387: root refcnt 9 limit 1000 delay 30.0ms  20.0ms 25% loss 15%
+  - Jitter is 50ms
+    - Loss is 0%
+        * Sat 14 Mar 20:05:05 UTC 2020   ->   qdisc netem 8388: root refcnt 9 limit 1000 delay 30.0ms  50.0ms 25%
+    - Loss is 2%
+        * Sat 14 Mar 21:05:05 UTC 2020   ->   qdisc netem 8389: root refcnt 9 limit 1000 delay 30.0ms  50.0ms 25% loss 2%
+    - Loss is 5%
+        * Sat 14 Mar 22:05:05 UTC 2020   ->   qdisc netem 838a: root refcnt 9 limit 1000 delay 30.0ms  50.0ms 25% loss 5%
+    - Loss is 10%
+        * Sat 14 Mar 23:05:05 UTC 2020   ->   qdisc netem 838b: root refcnt 9 limit 1000 delay 30.0ms  50.0ms 25% loss 10%
+    - Loss is 15%
+        * Sun 15 Mar 00:05:05 UTC 2020   ->   qdisc netem 838c: root refcnt 9 limit 1000 delay 30.0ms  50.0ms 25% loss 15%
+  - Jitter is 100ms
+    - Loss is 0%
+        * Sun 15 Mar 01:05:05 UTC 2020   ->   qdisc netem 838d: root refcnt 9 limit 1000 delay 30.0ms  100.0ms 25%
+    - Loss is 2%
+        * Sun 15 Mar 02:05:05 UTC 2020   ->   qdisc netem 838e: root refcnt 9 limit 1000 delay 30.0ms  100.0ms 25% loss 2%
+    - Loss is 5%
+        * Sun 15 Mar 03:05:05 UTC 2020   ->   qdisc netem 838f: root refcnt 9 limit 1000 delay 30.0ms  100.0ms 25% loss 5%
+    - Loss is 10%
+        * Sun 15 Mar 04:05:05 UTC 2020   ->   qdisc netem 8390: root refcnt 9 limit 1000 delay 30.0ms  100.0ms 25% loss 10%
+    - Loss is 15%
+        * Sun 15 Mar 05:05:05 UTC 2020   ->   qdisc netem 8391: root refcnt 9 limit 1000 delay 30.0ms  100.0ms 25% loss 15%
+
+- Delay is 80ms
+  - Jitter is 0ms
+    - Loss is 0%
+        * Sun 15 Mar 06:05:05 UTC 2020   ->   qdisc netem 8392: root refcnt 9 limit 1000 delay 80.0ms
+    - Loss is 2%
+        * Sun 15 Mar 07:05:05 UTC 2020   ->   qdisc netem 8393: root refcnt 9 limit 1000 delay 80.0ms loss 2%
+    - Loss is 5%
+        * Sun 15 Mar 08:05:05 UTC 2020   ->   qdisc netem 8394: root refcnt 9 limit 1000 delay 80.0ms loss 5%
+    - Loss is 10%
+        * Sun 15 Mar 09:05:05 UTC 2020   ->   qdisc netem 8395: root refcnt 9 limit 1000 delay 80.0ms loss 10%
+    - Loss is 15%
+        * Sun 15 Mar 10:05:05 UTC 2020   ->   qdisc netem 8396: root refcnt 9 limit 1000 delay 80.0ms loss 15%
+  - Jitter is 20ms
+    - Loss is 0%
+        * Sun 15 Mar 11:05:05 UTC 2020   ->   qdisc netem 8397: root refcnt 9 limit 1000 delay 80.0ms  20.0ms 25%
+    - Loss is 2%
+        * Sun 15 Mar 12:05:05 UTC 2020   ->   qdisc netem 8398: root refcnt 9 limit 1000 delay 80.0ms  20.0ms 25% loss 2%
+    - Loss is 5%
+        * Sun 15 Mar 13:05:05 UTC 2020   ->   qdisc netem 8399: root refcnt 9 limit 1000 delay 80.0ms  20.0ms 25% loss 5%
+    - Loss is 10%
+        * Sun 15 Mar 14:05:05 UTC 2020   ->   qdisc netem 839a: root refcnt 9 limit 1000 delay 80.0ms  20.0ms 25% loss 10%
+    - Loss is 15%
+        * Sun 15 Mar 15:05:05 UTC 2020   ->   qdisc netem 839b: root refcnt 9 limit 1000 delay 80.0ms  20.0ms 25% loss 15%
+  - Jitter is 50ms
+    - Loss is 0%
+        * Sun 15 Mar 16:05:05 UTC 2020   ->   qdisc netem 839c: root refcnt 9 limit 1000 delay 80.0ms  50.0ms 25%
+    - Loss is 2%
+        * Sun 15 Mar 17:05:05 UTC 2020   ->   qdisc netem 839d: root refcnt 9 limit 1000 delay 80.0ms  50.0ms 25% loss 2%
+    - Loss is 5%
+        * Sun 15 Mar 18:05:05 UTC 2020   ->   qdisc netem 839e: root refcnt 9 limit 1000 delay 80.0ms  50.0ms 25% loss 5%
+    - Loss is 10%
+        * Sun 15 Mar 19:05:05 UTC 2020   ->   qdisc netem 839f: root refcnt 9 limit 1000 delay 80.0ms  50.0ms 25% loss 10%
+    - Loss is 15%
+        * Sun 15 Mar 20:05:05 UTC 2020   ->   qdisc netem 83a0: root refcnt 9 limit 1000 delay 80.0ms  50.0ms 25% loss 15%
+  - Jitter is 100ms
+    - Loss is 0%
+        * Sun 15 Mar 21:05:05 UTC 2020   ->   qdisc netem 83a1: root refcnt 9 limit 1000 delay 80.0ms  100.0ms 25%
+    - Loss is 2%
+        * Sun 15 Mar 22:05:05 UTC 2020   ->   qdisc netem 83a2: root refcnt 9 limit 1000 delay 80.0ms  100.0ms 25% loss 2%
+    - Loss is 5%
+        * Sun 15 Mar 23:05:05 UTC 2020   ->   qdisc netem 83a3: root refcnt 9 limit 1000 delay 80.0ms  100.0ms 25% loss 5%
+    - Loss is 10%
+        * Mon 16 Mar 00:05:05 UTC 2020   ->   qdisc netem 83a4: root refcnt 9 limit 1000 delay 80.0ms  100.0ms 25% loss 10%
+    - Loss is 15%
+        * Mon 16 Mar 01:05:05 UTC 2020   ->   qdisc netem 83a5: root refcnt 9 limit 1000 delay 80.0ms  100.0ms 25% loss 15%
+
+- Delay is 130ms
+  - Jitter is 0ms
+    - Loss is 0%
+        * Mon 16 Mar 02:05:05 UTC 2020   ->   qdisc netem 83a6: root refcnt 9 limit 1000 delay 130.0ms
+    - Loss is 2%
+        * Mon 16 Mar 03:05:06 UTC 2020   ->   qdisc netem 83a7: root refcnt 9 limit 1000 delay 130.0ms loss 2%
+    - Loss is 5%
+        * Mon 16 Mar 04:05:06 UTC 2020   ->   qdisc netem 83a8: root refcnt 9 limit 1000 delay 130.0ms loss 5%
+    - Loss is 10%
+        * Mon 16 Mar 05:05:06 UTC 2020   ->   qdisc netem 83a9: root refcnt 9 limit 1000 delay 130.0ms loss 10%
+    - Loss is 15%
+        * Mon 16 Mar 06:05:06 UTC 2020   ->   qdisc netem 83aa: root refcnt 9 limit 1000 delay 130.0ms loss 15%
+  - Jitter is 20ms
+    - Loss is 0%
+        * Mon 16 Mar 07:05:06 UTC 2020   ->   qdisc netem 83ab: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25%
+    - Loss is 2%
+        * Mon 16 Mar 08:05:06 UTC 2020   ->   qdisc netem 83ac: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25% loss 2%
+    - Loss is 5%
+        * Mon 16 Mar 09:05:06 UTC 2020   ->   qdisc netem 83ad: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25% loss 5%
