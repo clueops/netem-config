@@ -6,7 +6,8 @@
 duration=2
 
 # Set default behaviour to loop through these values in the order they appear in the variable (i.e. not randomised/shuffled)
-random="no"
+# set shuffle=1 to run randomised order
+shuffle=0
 
 # Set Interface to required network interface
 # Options: Inside [enp1s0f1], Outside: [enp1s0f0]

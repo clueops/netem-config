@@ -1,4 +1,7 @@
-DELAYS="1ms 30ms 80ms 130ms 180ms 230ms"
+#!/bin/bash
+
+DELAYS="1 30 80 130 180 230"
+shuffle="1"
 
 echo "Normal"
 for DELAY in $DELAYS
@@ -13,3 +16,11 @@ for DELAY in $DELAYS_SHUF
 do
     echo "- Delay is $DELAY"
 done
+
+
+if [ "$shuffle" -eq 1 ]
+then
+echo $shuffle
+else
+echo no
+fi
