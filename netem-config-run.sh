@@ -59,8 +59,8 @@ for delay in $delay_run
 do
     echo ""
     echo "- Delay is ${delay}ms"
-    in_delay="$((DELAY/2))ms"
-    out_delay="$((DELAY/2))ms"
+    in_delay="$((delay/2))ms"
+    out_delay="$((delay/2))ms"
 
     # Jitter loop
     for jitter in $jitter_run
