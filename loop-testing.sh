@@ -6,7 +6,7 @@ do
     echo "- Delay is $DELAY"
 done
 
-DELAYS_SHUF=$(shuf -e $DELAYS)
+DELAYS_SHUF="$(shuf -e $DELAYS)"
 
 echo "Random"
 for DELAY in $DELAYS_SHUF
