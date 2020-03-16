@@ -3,50 +3,68 @@
 # Script to drive NetEm to provide changing network conditions
 
 # usage:
-# ./netem-ramp-up2.sh2			        	: output to screen only
-# ./netem-ramp-up2.sh2 | tee <logfile.log>	: output to screen and log file <logfile.log>
+# ./netem-config-run.sh			        	: output to screen only
+# ./netem-config-run.sh | tee <logfile.log>	: output to screen and log file <logfile.log>
 
-# Set Duration to required number of SECONDS (e.g. 1200 is 20 minutes)
-DURATION=3600
+# Call parameters file and required variables
+source netem-config-params.sh
 
-# Set Interface to required network interface
-# Options: Inside [enp1s0f1], Outside: [enp1s0f0]
-INTERFACE=enp1s0f1
+# Set variables to use for this run
+DELAY_RUN = $DELAY_PARAMS
+JITTER_RUN = $JITTER_PARAMS
+LOSS_RUN = $LOSS_PARAMS
 
 # Start run
 echo "Starting NetEm run..."
 echo $(date -u)
-sudo tc qdisc del dev $INTERFACE root
 
-# Loops by Delay > Jitter > Loss
+# Remove any pre-existing active netem config
+# sudo tc qdisc del dev $IN_INTERFACE root
+# sudo tc qdisc del dev $OUT_INTERFACE root
+
+# Main loops start here - loop by Delay > Jitter > Loss
 
 # Delay loop
-for DELAY in 1ms 30ms 80ms 130ms 180ms 230ms
+for DELAY in $DELAY_RUN
 do
-	echo ""
-    echo "- Delay is $DELAY"
+    echo ""
+    echo "- Delay is ${DELAY}ms"
+    IN_DELAY="$((DELAY/2))ms"
+    OUT_DELAY="$((DELAY/2))ms"
 
     # Jitter loop
-    for JITTER in 0ms 20ms 50ms 100ms
+    for JITTER in $JITTER_RUN
     do
+        JITTER="${JITTER}ms"
         echo "  - Jitter is $JITTER"
 
         # Loss loop
-        for LOSS in 0 2 5 10 15
+        for LOSS in $LOSS_RUN
         do
-            echo "    - Loss is $LOSS%"
-            echo -n "        * $(date -u)"
+            echo "    - Loss is ${LOSS}%"
 
-            if [ $JITTER = 0ms ]
+            # Set new netem conditions on Inside interface (for inbound traffic)
+            if [ $JITTER = 0 ]
 		    then
-			    sudo tc qdisc add dev $INTERFACE root netem delay $DELAY loss $LOSS
+#			    sudo tc qdisc add dev $IN_INTERFACE root netem delay $IN_DELAY loss $LOSS
 		    else
-			    sudo tc qdisc add dev $INTERFACE root netem delay $DELAY $JITTER 25% distribution normal loss $LOSS
+#			    sudo tc qdisc add dev $IN_INTERFACE root netem delay $IN_DELAY $JITTER 25% distribution normal loss $LOSS
 		    fi
 
-            sudo tc qdisc show dev $INTERFACE | awk '{print "   ->   "$0}'
+            # Set new netem conditions on Outside interface (for outbound traffic)
+#            sudo tc qdisc add dev $OUT_INTERFACE root netem delay $OUT_DELAY
+
+            # Display current netem conditions (sanity check)
+            echo -n "        * $(date -u)"
+            sudo tc qdisc show dev $IN_INTERFACE | awk '{print "  : IN   ->   "$0}'
+            echo -n "        * $(date -u)"
+            sudo tc qdisc show dev $OUT_INTERFACE | awk '{print "  : OUT   ->   "$0}'
+            
+            # Leave the new network conditions in place for agreed time duration
             sleep $DURATION
-            sudo tc qdisc del dev $INTERFACE root
+            # Remove the current netem config in preparation for next loop (netem does not allow changing directly from one condition to another)
+#            sudo tc qdisc del dev $IN_INTERFACE root
+#            sudo tc qdisc del dev $OUT_INTERFACE root
         done
     
     done
