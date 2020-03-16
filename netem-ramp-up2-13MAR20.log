@@ -158,3 +158,10 @@ Fri 13 Mar 14:05:04 UTC 2020
         * Mon 16 Mar 08:05:06 UTC 2020   ->   qdisc netem 83ac: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25% loss 2%
     - Loss is 5%
         * Mon 16 Mar 09:05:06 UTC 2020   ->   qdisc netem 83ad: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25% loss 5%
+    - Loss is 10%
+        * Mon 16 Mar 10:05:06 UTC 2020   ->   qdisc netem 83ae: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25% loss 10%
+    - Loss is 15%
+        * Mon 16 Mar 11:05:06 UTC 2020   ->   qdisc netem 83af: root refcnt 9 limit 1000 delay 130.0ms  20.0ms 25% loss 15%
+  - Jitter is 50ms
+    - Loss is 0%
+        * Mon 16 Mar 12:05:06 UTC 2020   ->   qdisc netem 83b0: root refcnt 9 limit 1000 delay 130.0ms  50.0ms 25%
