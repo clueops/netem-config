@@ -19,7 +19,7 @@ source netem-config-params.sh
 while [ -n "$1" ]; do
 	case "$1" in
 	-r)
-        random="yes"
+        shuffle=1
         echo "-r option passed"
         ;;
 	-d)
@@ -33,9 +33,9 @@ while [ -n "$1" ]; do
 done
 
 # Set the network condition variables to use for this run, shuffle the order of values if requested
-if [ $random = "yes" ]
+if [ $shuffle -eq 1 ]
 then
-    delays_run=$(shuf -e $delay_params)
+    delay_run=$(shuf -e $delay_params)
     jitter_run=$(shuf -e $jitter_params)
     loss_run=$(shuf -e $loss_params)
 else
