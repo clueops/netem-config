@@ -19,12 +19,12 @@ source netem-config-params.sh
 while [ -n "$1" ]; do
 	case "$1" in
 	-r)
-        random="yes"
+        RANDOM="yes"
         echo "-r option passed"
         ;;
 	-d)
-		duration="$2"
-		echo "-d option passed, with value $duration"
+		DURATION="$2"
+		echo "-d option passed, with value $DURATION"
 		shift
 		;;
 	*) echo "Option $1 not recognized" ;;
@@ -33,15 +33,15 @@ while [ -n "$1" ]; do
 done
 
 # Set the network condition variables to use for this run, shuffle the order of values if requested
-if [ $random = "yes" ]
+if [ $RANDOM = "yes" ]
 then
-    delays_run=$(shuf -e $delay_params)
-    jitter_run=$(shuf -e $jitter_params)
-    loss_run=$(shuf -e $loss_params)
+    DELAYS_RUN=$(shuf -e $DELAY_PARAMS)
+    JITTER_RUN=$(shuf -e $JITTER_PARAMS)
+    LOSS_RUN=$(shuf -e $LOSS_PARAMS)
 else
-    delay_run=$delay_params
-    jitter_run=$jitter_params
-    loss_run=$loss_params
+    DELAY_RUN=$DELAY_PARAMS
+    JITTER_RUN=$JITTER_PARAMS
+    LOSS_RUN=$LOSS_PARAMS
 fi
 
 # Start NetEm run here
@@ -49,56 +49,52 @@ echo "Starting NetEm run..."
 echo $(date -u)
 
 # Remove any pre-existing active NetEm config
-# sudo tc qdisc del dev $in_interface root
-# sudo tc qdisc del dev $out_interface root
+# sudo tc qdisc del dev $IN_INTERFACE root
+# sudo tc qdisc del dev $OUT_INTERFACE root
 
 # Main loops start here - loop by Delay > Jitter > Loss
 
 # Delay loop
-for delay in $delay_run
+for DELAY in $DELAY_RUN
 do
     echo ""
-    echo "- Delay is ${delay}ms"
-    in_delay="$((DELAY/2))ms"
-    out_delay="$((DELAY/2))ms"
+    echo "- Delay is ${DELAY}ms"
+    IN_DELAY="$((DELAY/2))ms"
+    OUT_DELAY="$((DELAY/2))ms"
 
     # Jitter loop
-    for jitter in $jitter_run
+    for JITTER in $JITTER_RUN
     do
-        jitter="${jitter}ms"
-        echo "  - Jitter is $jitter"
+        JITTER="${JITTER}ms"
+        echo "  - Jitter is $JITTER"
 
         # Loss loop
-        for loss in $loss_run
+        for LOSS in $LOSS_RUN
         do
-            echo "    - Loss is ${loss}%"
+            echo "    - Loss is ${LOSS}%"
 
             # Set new NetEm conditions on Inside interface (for inbound traffic)
-            if [ $jitter = 0 ]
+            if [ $JITTER = 0 ]
 		    then
-#			    sudo tc qdisc add dev $in_interface root netem delay $in_delay loss $loss
-                echo ""
+#			    sudo tc qdisc add dev $IN_INTERFACE root netem delay $IN_DELAY loss $LOSS
 		    else
-#			    sudo tc qdisc add dev $in_interface root netem delay $in_delay $jitter 25% distribution normal loss $loss
-                echo ""
+#			    sudo tc qdisc add dev $IN_INTERFACE root netem delay $IN_DELAY $JITTER 25% distribution normal loss $LOSS
 		    fi
 
             # Set new NetEm conditions on Outside interface (for outbound traffic)
- #           sudo tc qdisc add dev $out_interface root netem delay $out_delay
+#            sudo tc qdisc add dev $OUT_INTERFACE root netem delay $OUT_DELAY
 
             # Display current NetEm conditions (sanity check)
             echo -n "        * $(date -u)"
- #           sudo tc qdisc show dev $in_interface | awk '{print "  : IN   ->   "$0}'
-            echo "dev $in_interface root netem delay $in_delay $jitter 25% distribution normal loss $loss"  | awk '{print "  : IN   ->   "$0}'
+            sudo tc qdisc show dev $IN_INTERFACE | awk '{print "  : IN   ->   "$0}'
             echo -n "        * $(date -u)"
-#            sudo tc qdisc show dev $out_interface | awk '{print "  : OUT   ->   "$0}'
-            echo "dev $out_interface root netem delay $out_delay" | awk '{print "  : OUT   ->   "$0}'
+            sudo tc qdisc show dev $OUT_INTERFACE | awk '{print "  : OUT   ->   "$0}'
             
             # Leave the new network conditions in place for agreed time duration
-            sleep $duration
+            sleep $DURATION
             # Remove the current NetEm config in preparation for next loop (NetEm does not allow changing directly from one condition to another)
-#            sudo tc qdisc del dev $in_interface root
-#            sudo tc qdisc del dev $out_interface root
+#            sudo tc qdisc del dev $IN_INTERFACE root
+#            sudo tc qdisc del dev $OUT_INTERFACE root
         done
     
     done
