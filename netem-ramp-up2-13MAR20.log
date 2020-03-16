@@ -165,3 +165,7 @@ Fri 13 Mar 14:05:04 UTC 2020
   - Jitter is 50ms
     - Loss is 0%
         * Mon 16 Mar 12:05:06 UTC 2020   ->   qdisc netem 83b0: root refcnt 9 limit 1000 delay 130.0ms  50.0ms 25%
+    - Loss is 2%
+        * Mon 16 Mar 13:05:06 UTC 2020   ->   qdisc netem 83b1: root refcnt 9 limit 1000 delay 130.0ms  50.0ms 25% loss 2%
+    - Loss is 5%
+        * Mon 16 Mar 14:05:06 UTC 2020   ->   qdisc netem 83b2: root refcnt 9 limit 1000 delay 130.0ms  50.0ms 25% loss 5%
