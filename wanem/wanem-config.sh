@@ -17,7 +17,7 @@ out_interface=enp1s0f0
 # WAN Zone
     # Conditions (qdisc 20:, 21:)
         wan_delay="10"      # Specify value of Delay to use (in 'ms') - value will be applied 100% to in
-        wan_jitter="20"      # Specify value of Jitter to use (in 'ms') - value will be applied 100% to in
+        wan_jitter="10"      # Specify value of Jitter to use (in 'ms') - value will be applied 100% to in
         wan_loss="0"        # Specify value of Loss to use (in '%') - value will be applied 100% to in
     # Filters (class/flowid 1:2)
         wan_filters="11.1.1.2/32 12.0.0.10/32 172.16.0.1/32"
