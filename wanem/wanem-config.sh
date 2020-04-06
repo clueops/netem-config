@@ -12,7 +12,7 @@ out_interface=enp1s0f0
     # Conditions (device 10:)
                             # No added behaviour
     # Filters (class/flowid 1:1)
-        lan_filters="14.1.1.1/32 11.1.1.70/32"
+        lan_filters="14.1.1.1/32 11.1.1.70/32 11.1.1.3/32"
 
 # WAN Zone
     # Conditions (device 20:)
