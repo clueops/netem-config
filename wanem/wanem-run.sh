@@ -34,10 +34,8 @@ sudo tc qdisc add dev $out_interface root handle 1: prio bands 3 priomap 2 2 2 2
     sudo tc qdisc add dev $out_interface parent 1:1 handle 10: pfifo
 
     # Traffic filters - loop through each IP in LAN zone
-    echo $lan_filters
     for lan_ip in $lan_filters
     do
-        echo $lan_ip
         # Apply traffic filters - Inbound
         sudo tc filter add dev $in_interface protocol ip parent 1: prio 1 u32 match ip src $lan_ip flowid 1:1
         # Apply traffic filters - Outbound
@@ -74,6 +72,7 @@ sudo tc qdisc add dev $out_interface root handle 1: prio bands 3 priomap 2 2 2 2
     int_delay=$((wan_delay + int_delay))
     int_jitter=$((wan_jitter + int_jitter))
     int_lost=$((wan_lost + int_lost))
+    echo $int_delay $int_jitter $int_lost
 
     # Set new NetEm conditions on Inside interface (for inbound traffic)
     if [ $int_jitter = 0 ]
