@@ -32,8 +32,8 @@ sudo tc qdisc add dev $out_interface root handle 1: prio bands 3 priomap 2 2 2 2
     # Traffic filters - loop through each IP in LAN zone
     echo $lan_filters
     for lan_ip in $lan_filters
-    echo $lan_ip
     do
+        echo $lan_ip
         # Apply traffic filters - Inbound
         sudo tc filter add dev $in_interface protocol ip parent 1: prio 1 u32 match ip src $lan_ip flowid 1:1
         # Apply traffic filters - Outbound
