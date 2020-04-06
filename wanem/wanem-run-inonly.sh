@@ -49,9 +49,9 @@ sudo tc qdisc add dev $in_interface root handle 1: prio bands 3 priomap 2 2 2 2 
     # Set new NetEm conditions on Inside interface (for inbound traffic)
     if [ $wan_jitter = 0 ]
     then
-        sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay $wan_delay loss $wan_loss
+        sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay ${wan_delay}ms loss $wan_loss
     else
-		sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay $wan_delay $wan_jitter 25% distribution normal loss $wan_loss
+		sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay ${wan_delay}ms $wan_jitter 25% distribution normal loss $wan_loss
     fi
 
     # Set new NetEm conditions on Outside interface (for outbound traffic)
@@ -78,9 +78,9 @@ sudo tc qdisc add dev $in_interface root handle 1: prio bands 3 priomap 2 2 2 2 
     # Set new NetEm conditions on Inside interface (for inbound traffic)
     if [ $int_jitter = 0 ]
     then
-        sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay $int_delay loss $int_loss
+        sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay ${int_delay}ms loss $int_loss
     else
-		sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay $int_delay $int_jitter 25% distribution normal loss $int_loss
+		sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay ${int_delay}ms $int_jitter 25% distribution normal loss $int_loss
     fi
 
     # Set new NetEm conditions on Outside interface (for outbound traffic)
