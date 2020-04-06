@@ -27,43 +27,36 @@ sudo tc qdisc add dev $in_interface root handle 1: prio bands 3 priomap 2 2 2 2 
 # 1. Create LAN zone conditions
     # First class (prior, id 0) uses normal queuing (fifo), no impairments
 
-    # Set new NetEm conditions on Inside interface (for inbound traffic)
+    # Add a new NetEm qdisc with impairments on Inside interface (for inbound traffic)
     sudo tc qdisc add dev $in_interface parent 1:1 handle 10: pfifo
-
-    # Set new NetEm conditions on Outside interface (for outbound traffic)
-    # sudo tc qdisc add dev $out_interface parent 1:1 handle 10: pfifo
 
     # Traffic filters - loop through each IP in LAN zone
     for lan_ip in $lan_filters
     do
         # Apply traffic filters - Inbound
         sudo tc filter add dev $in_interface protocol ip parent 1: prio 1 u32 match ip src $lan_ip flowid 1:1
-        # Apply traffic filters - Outbound
-        # sudo tc filter add dev $out_interface protocol ip parent 1: prio 1 u32 match ip dst $lan_ip flowid 1:1
     done
 
 # 2. Create WAN zone conditions
     # Second class (id 1) uses the specific impairment configuration (20:)
     echo "WAN conditions:" $wan_delay $wan_jitter $wan_loss
 
-    # Set new NetEm conditions on Inside interface (for inbound traffic)
-    if [ $wan_jitter = 0 ]
-    then
-        sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay ${wan_delay}ms loss $wan_loss
-    else
-		sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay ${wan_delay}ms $wan_jitter 25% distribution normal loss $wan_loss
-    fi
+    # Add a new NetEm qdisc with delay and loss impairments on Inside interface (for inbound traffic)
+    sudo tc qdisc add dev $in_interface parent 1:2 handle 20: netem delay ${wan_delay}ms loss $wan_loss
 
-    # Set new NetEm conditions on Outside interface (for outbound traffic)
-    # sudo tc qdisc add dev $out_interface parent 1:2 handle 20: netem delay $((wan_delay/2))ms
+    # Apply jitter if specified and we only want to apply +ve jitter (i.e. we don't want the resulting delay to be less than the base delay for this zone)
+    # Half the jitter value is applied as additional latency, half is applied as jitter on this additional latency. Not perfect but reasonable approximation.
+    if [ $wan_jitter -ne 0 ]
+    then
+        # Add a second chained NetEm qdsic on Inside interface with jitter impairment
+		sudo tc qdisc add dev $in_interface parent 20: handle 21: netem delay $((wan_jitter/2))ms $((wan_jitter/2))ms
+    fi
 
     # Traffic filters - loop through each IP in WAN zone
     for wan_ip in $wan_filters
     do
         # Apply traffic filters - Inbound
         sudo tc filter add dev $in_interface protocol ip parent 1: prio 2 u32 match ip src $wan_ip flowid 1:2
-        # Apply traffic filters - Outbound
-        # sudo tc filter add dev $out_interface protocol ip parent 1: prio 2 u32 match ip dst $wan_ip flowid 1:2
     done
 
 # 3. Create Internet zone conditions
@@ -75,18 +68,19 @@ sudo tc qdisc add dev $in_interface root handle 1: prio bands 3 priomap 2 2 2 2 
     int_loss=$((wan_loss + int_loss))
     echo "INT conditions:" $int_delay $int_jitter $int_loss
 
-    # Set new NetEm conditions on Inside interface (for inbound traffic)
-    if [ $int_jitter = 0 ]
+    # Add a new NetEm qdisc with delay and loss impairments on Inside interface (for inbound traffic)
+    sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay ${int_delay}ms loss $int_loss
+
+    # Apply jitter if specified and we only want to apply +ve jitter (i.e. we don't want the resulting delay to be less than the base delay for this zone)
+    # Half the jitter value is applied as additional latency, half is applied as jitter on this additional latency. Not perfect but reasonable approximation.
+    if [ $int_jitter -ne 0 ]
     then
-        sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay ${int_delay}ms loss $int_loss
-    else
-		sudo tc qdisc add dev $in_interface parent 1:3 handle 30: netem delay ${int_delay}ms $int_jitter 25% distribution normal loss $int_loss
+        # Add a second chained NetEm qdsic on Inside interface with jitter impairment
+		sudo tc qdisc add dev $in_interface parent 30: handle 31: netem delay $((int_jitter/2))ms $((int_jitter/2))ms
     fi
 
-    # Set new NetEm conditions on Outside interface (for outbound traffic)
-    # sudo tc qdisc add dev $out_interface parent 1:3 handle 30: netem delay $((int_delay/2))ms
-
-    # Traffic filters - no need to apply an Internet Zone filter, this is the default class and applied to all IPs not previously allocated to the LAN or WAN zones
+    # Traffic filters - 
+    # Not required for Internet Zone, this is the default class and applied to all IPs not previously allocated to the LAN or WAN zones
 
 # Finish
 sudo tc qdisc show dev $in_interface
