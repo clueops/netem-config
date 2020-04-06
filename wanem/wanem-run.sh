@@ -21,8 +21,8 @@ sudo tc qdisc del dev $in_interface root
 sudo tc qdisc del dev $out_interface root
 
 # Create 3-class priority map (0,1,2), with all traffic redirected to the third class (id 2) by default.
-tc qdisc add dev $in_interface root handle 1: prio bands 3 priomap 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-tc qdisc add dev $out_interface root handle 1: prio bands 3 priomap 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+sudo tc qdisc add dev $in_interface root handle 1: prio bands 3 priomap 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+sudo tc qdisc add dev $out_interface root handle 1: prio bands 3 priomap 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
 
 # Create LAN zone conditions
     # First class (prior, id 0) uses normal queuing (fifo)
