@@ -70,6 +70,11 @@ sudo tc qdisc add dev $out_interface root handle 1: prio bands 3 priomap 2 2 2 2
 # 3. Create Internet zone conditions
     # Third class (default, id 2) uses the specific impairment configuration (30:)
 
+    # Aggregate the total WAN and Internet conditions
+    int_delay=$((wan_delay + int_delay))
+    int_jitter=$((wan_jitter + int_jitter))
+    int_lost=$((wan_lost + int_lost))
+
     # Set new NetEm conditions on Inside interface (for inbound traffic)
     if [ $int_jitter = 0 ]
     then

@@ -18,12 +18,13 @@ out_interface=enp1s0f0
     # Conditions (device 20:)
         wan_delay="10"      # Specify value of Delay to use (in 'ms') - value will be applied 50%/50% to in and out
         wan_jitter="0"      # Specify value of Jitter to use (in 'ms') - value will be applied 100% to in
-        wan_loss="0"        # Specify value of Loss to use (in '%') - value will be applied 100% to in
+        wan_loss="5"        # Specify value of Loss to use (in '%') - value will be applied 100% to in
     # Filters (class/flowid 1:2)
         wan_filters="11.1.1.2/32 12.0.0.10/32 172.16.0.1/32"
 
 # Internet Zone
     # Conditions (device 30:)
+        # Note that these conditions are *additive* to the WAN conditions above
         int_delay="10"      # Specify value of Delay to use (in 'ms') - value will be applied 50%/50% to in and out
         int_jitter="0"      # Specify value of Jitter to use (in 'ms') - value will be applied 100% to in
         int_loss="0"        # Specify value of Loss to use (in '%') - value will be applied 100% to in
