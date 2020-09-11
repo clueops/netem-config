@@ -4,8 +4,8 @@
 
 : '
  Script usage:
- ./netem-config-run.sh			        	: output to screen only
- ./netem-config-run.sh | tee <logfile.log>	: output to screen and log file <logfile.log>
+ ./netem-loop-run.sh			        	: output to screen only
+ ./netem-loop-run.sh | tee <logfile.log>	: output to screen and log file <logfile.log>
 
  Script options:
   -r                : (optional) randomise/shuffle the order of the Delay, Jitter and Loss values from within each of the variable lists. The default behaviour is to loop through these values in the order they appear in the list.
@@ -13,7 +13,7 @@
 '
 
 # Load parameters file with required variables
-source netem-config-params.sh
+source netem-loop-params.sh
 
 # Read any supplied command line options
 while [ -n "$1" ]; do
