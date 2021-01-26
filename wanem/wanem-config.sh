@@ -25,8 +25,8 @@ out_interface=enp1s0f0
 # Internet Zone
     # Conditions (qdisc 30:, 31:)
         # Note that these conditions are *additive* to the WAN conditions above (and any underlying Internet latency)
-        int_delay="0"      # Specify value of Delay to use (in 'ms') - value will be applied 100% to in
-        int_jitter="0"      # Specify value of Jitter to use (in 'ms') - value will be applied 100% to in
-        int_loss="0"        # Specify value of Loss to use (in '%') - value will be applied 100% to in
+        int_delay="100"      # Specify value of Delay to use (in 'ms') - value will be applied 100% to in
+        int_jitter="50"      # Specify value of Jitter to use (in 'ms') - value will be applied 100% to in
+        int_loss="20"        # Specify value of Loss to use (in '%') - value will be applied 100% to in
     # Filters (class/flowid 1:3)
         int_filters=""      # default - everything else
